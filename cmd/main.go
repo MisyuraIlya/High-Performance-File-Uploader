@@ -1,4 +1,4 @@
-package cmd
+package main
 
 import (
 	"fmt"
@@ -39,7 +39,7 @@ func main() {
 	}
 
 	filePath := os.Args[1]
-
+	fmt.Println("Loading file ", filePath)
 	config := internal.Config{
 		ChunkSize: chunkSize,
 		ServerURL: serverURL,

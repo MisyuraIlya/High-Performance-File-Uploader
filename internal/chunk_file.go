@@ -4,6 +4,7 @@ import (
 	"crypto/md5"
 	"encoding/hex"
 	"fmt"
+	"io"
 	"os"
 	"sync"
 )
@@ -22,7 +23,7 @@ func (c *DefaultFileChunker) ChunkFile(filePath string) ([]ChunkMeta, error) {
 
 	for {
 		bytesRead, err := file.Read(buffer)
-		if err != nil {
+		if err != nil && err != io.EOF {
 			return nil, err
 		}
 		if bytesRead == 0 {
@@ -51,6 +52,7 @@ func (c *DefaultFileChunker) ChunkFile(filePath string) ([]ChunkMeta, error) {
 		chunkFile.Close()
 		index++
 	}
+
 	return chunks, nil
 }
 

@@ -31,11 +31,11 @@ func SynchronizeChunks(
 				mu.Unlock()
 
 				if !exists || oldChunk.MD5Hash != newHash {
-					err := uploader.UploadChunk(chunk)
-					if err != nil {
-						errChan <- err
-						return
-					}
+					//err := uploader.UploadChunk(chunk)
+					//if err != nil {
+					//	errChan <- err
+					//	return
+					//}
 					mu.Lock()
 					metadata[chunk.FileName] = chunk
 					mu.Unlock()

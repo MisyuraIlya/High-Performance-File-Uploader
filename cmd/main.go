@@ -62,17 +62,16 @@ func main() {
 	if err != nil {
 		log.Println("Cloud not load metadata starting fresh.")
 		metadata = make(map[string]internal.ChunkMeta)
+
 	}
 
 	var wg sync.WaitGroup
 	var mu sync.Mutex
-
 	err = internal.SynchronizeChunks(chunks, metadata, uploader, &wg, &mu)
 	if err != nil {
 		log.Fatal(err)
 	}
 	wg.Wait()
-
 	err = metadataManager.SaveMetadata(fmt.Sprintf("%s.metadata.json", filePath), metadata)
 	if err != nil {
 		log.Fatal(err)

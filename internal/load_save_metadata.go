@@ -2,12 +2,13 @@ package internal
 
 import (
 	"encoding/json"
+	"fmt"
 	"os"
 )
 
 func (m *DefaultMetadataManager) LoadMetadata(filePath string) (map[string]ChunkMeta, error) {
+	fmt.Println("file", filePath)
 	metadata := make(map[string]ChunkMeta)
-
 	data, err := os.ReadFile(filePath)
 
 	if err != nil {

@@ -16,7 +16,7 @@ type DefaultFileChunker struct {
 }
 
 type DefaultUploader struct {
-	serverURL string
+	ServerURL string
 }
 
 type DefaultMetadataManager struct{}
@@ -24,6 +24,10 @@ type DefaultMetadataManager struct{}
 type FileChunker interface {
 	ChunkFile(filePath string) ([]ChunkMeta, error)
 	ChunkLargeFile(filePath string) ([]ChunkMeta, error)
+}
+
+type Uploader interface {
+	UploadChunk(chunk ChunkMeta) error
 }
 
 type MetadataManager interface {
